@@ -15,7 +15,7 @@ MANIFEST_PATH = DATA_DIR / "manifest.json"
 def load_manifest() -> dict[str, dict]:
     if not MANIFEST_PATH.exists():
         return {}
-    return json.loads(MANIFEST_PATH.read_text())
+    return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
 
 
 def record_filing(ticker: str, filing: dict) -> None:
@@ -27,4 +27,4 @@ def record_filing(ticker: str, filing: dict) -> None:
         "form": "10-K",
     }
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    MANIFEST_PATH.write_text(json.dumps(manifest, indent=2))
+    MANIFEST_PATH.write_text(json.dumps(manifest, indent=2), encoding="utf-8")

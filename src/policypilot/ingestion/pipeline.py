@@ -61,7 +61,8 @@ def run_ingestion(tickers: list[str] | None = None) -> int:
             filing["accession_number"],
         )
         text = client.download_filing_text(filing)
-        (RAW_DIR / f"{ticker}_{filing['accession_number']}.txt").write_text(text)
+        raw_path = RAW_DIR / f"{ticker}_{filing['accession_number']}.txt"
+        raw_path.write_text(text, encoding="utf-8")
         record_filing(ticker, filing)
 
         chunks = chunk_filing(ticker, filing, text)

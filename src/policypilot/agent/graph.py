@@ -78,7 +78,8 @@ def build_graph(llm: LLMClient, store: VectorStore):
 
     def retrieve_node(state: AgentState) -> AgentState:
         ticker_hint = state.get("ticker_hint")
-        results = retrieve(store, state["search_query"], k=5, ticker=ticker_hint)
+        # k=3: chunks are ~1200 words, so 5 of them overflows Groq's free-tier 8k TPM limit.
+        results = retrieve(store, state["search_query"], k=3, ticker=ticker_hint)
         metadata = filing_metadata(ticker_hint) if ticker_hint else None
         return {"results": results, "metadata": metadata}
 

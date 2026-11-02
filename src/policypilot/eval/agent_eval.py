@@ -55,7 +55,8 @@ class _TracedVectorStore:
 
 
 def load_golden_dataset() -> list[dict]:
-    return [json.loads(line) for line in GOLDEN_PATH.read_text().splitlines() if line.strip()]
+    lines = GOLDEN_PATH.read_text(encoding="utf-8").splitlines()
+    return [json.loads(line) for line in lines if line.strip()]
 
 
 @scorer
