@@ -10,6 +10,7 @@
 # The Groq key is injected at deploy time as BUNDLE_VAR_groq_api_key — cd.yml reads it from
 # Azure Key Vault after the OIDC login — so it never lands in source control. Guardrails
 # (service policies) are attached in the Unity Gateway UI.
+
 #
 # Grants: CD deploys as the GitHub OIDC service principal, so it OWNS both objects — and in
 # Unity Catalog you can't even see an object you hold no privilege on. So each deploy grants
