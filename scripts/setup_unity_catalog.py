@@ -5,10 +5,10 @@ DATABRICKS_HOST / DATABRICKS_TOKEN in .env (a workspace PAT, generated via User 
 -> Developer -> Access tokens).
 
 Creates, idempotently:
-  - catalog `policypilot_dev` (UC_CATALOG)
-  - schema  `policypilot_dev.filings`
-  - volume  `policypilot_dev.filings.raw_documents` (landing zone for source PDFs/HTML)
-  - table   `policypilot_dev.filings.chunks` (Delta, CDC-enabled for Vector Search sync)
+  - catalog `topsecretcatalog` (UC_CATALOG)
+  - schema  `topsecretcatalog.filings`
+  - volume  `topsecretcatalog.filings.raw_documents` (landing zone for source PDFs/HTML)
+  - table   `topsecretcatalog.filings.chunks` (Delta, CDC-enabled for Vector Search sync)
 
 Run once per target after provisioning:
     uv run python scripts/setup_unity_catalog.py
