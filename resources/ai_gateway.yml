@@ -50,7 +50,9 @@ resources:
             - name: primary
               destination_type: DESTINATION_TYPE_EXTERNAL_FOUNDATION_MODEL
               external_model_config:
-                model_provider_service: model-provider-services/${var.catalog}.filings.groq
+                # Reference the resource (not a literal "groq") so the bundle creates the
+                # provider service first; a plain string gives no ordering dependency.
+                model_provider_service: model-provider-services/${var.catalog}.filings.${resources.model_provider_services.groq.model_provider_service_id}
                 target:
                   model: openai/gpt-oss-120b
                   native_api_types: [openai/v1/chat/completions]
